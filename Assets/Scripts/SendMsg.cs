@@ -10,7 +10,7 @@ public class SendMsg : MonoBehaviour {
     public string MassegeSendTo = "vladsk.panchenko.97@gmail.com";
     public string MassegeSendBy = ""; // write your Email
     public string MassegeSendByPassword = "";// write your password 
-    public string HeadThemeMsg= "Test My APP";
+    public string HeadThemeMsg= "Test APP";
     public string MsgText = "hi, i send msg to your email ^_^";
     public void Send()
     {
