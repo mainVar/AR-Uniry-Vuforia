@@ -21,6 +21,6 @@ SoundControl
 UIControler
 -The class that implements the work of the UI (opening and closing the animated interface and making a screenshot (only memory buffer, the transfer of the screenshot comes with the help of another class)
 
-In project I used (it is Unity Native Gallery Plugin):
+In project I used (Unity Native Gallery Plugin):
  https://github.com/yasirkula/UnityNativeGallery
 
