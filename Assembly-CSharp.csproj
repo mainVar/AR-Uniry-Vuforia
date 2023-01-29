@@ -59,13 +59,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AnimationControl.cs" />
+     <Compile Include="Assets\Scripts\AnimationTester.cs" />
      <Compile Include="Assets\Scripts\CameraFocusController.cs" />
      <Compile Include="Assets\Scripts\PhoneCameraDebug.cs" />
      <Compile Include="Assets\Scripts\ScreenShotShare.cs" />
      <Compile Include="Assets\Scripts\SendMsg.cs" />
      <Compile Include="Assets\Scripts\SoundControl.cs" />
      <Compile Include="Assets\Scripts\UIControler.cs" />
-     <Compile Include="Assets\Scripts\testanim.cs" />
      <Compile Include="Assets\UITween\Prefabs\Click Effect Pref\ClickedWaveAnimation.cs" />
      <Compile Include="Assets\UITween\ScenesExamplesScripts\ActivateOnEnable.cs" />
      <Compile Include="Assets\UITween\ScenesExamplesScripts\CreateAnimImage.cs" />

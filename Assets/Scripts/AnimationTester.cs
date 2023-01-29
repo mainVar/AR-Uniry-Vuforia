@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class testanim : MonoBehaviour {
+public class AnimationTester : MonoBehaviour {
     public Animator Anim;
     // Use this for initialization
     void Start () {

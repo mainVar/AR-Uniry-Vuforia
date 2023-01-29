@@ -12,14 +12,6 @@ public class ScreenShotShare : MonoBehaviour
     public string subject, ShareMessage, url;
     private bool isProcessing = false;
 
-
-
-    public void ShareScreenshotWithText()
-    {
-        // Share();
-
-    }
-
     public void Share()
     {
 #if UNITY_ANDROID
@@ -32,9 +24,9 @@ public class ScreenShotShare : MonoBehaviour
  Debug.Log("No sharing set up for this platform.");
 #endif
     }
+
     public void PickImage(int maxSize)
     {
-
         loadingText.SetActive(true);
         image.gameObject.SetActive(false);
 
@@ -52,10 +44,9 @@ public class ScreenShotShare : MonoBehaviour
                 loadingText.SetActive(false);
                 image.gameObject.SetActive(true);
 
-                Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height),
+                    new Vector2(0.5f, 0.5f));
                 image.sprite = sprite;
-                
-
             }
         }, "Select an image", "image/*", maxSize);
     }
@@ -63,27 +54,25 @@ public class ScreenShotShare : MonoBehaviour
     public IEnumerator ShareScreenshot()
     {
         isProcessing = true;
-      
+
         // wait for graphics to render
         yield return new WaitForEndOfFrame();
-       //  string screenShotPath = Application.persistentDataPath  + ScreenshotName;
-        string screenShotPath = Path.Combine(Application.persistentDataPath, "screenshot.png") ;
-         //Application.CaptureScreenshot(ScreenshotName);
-         // ScreenCapture.CaptureScreenshot(ScreenshotName);
+        //  string screenShotPath = Application.persistentDataPath  + ScreenshotName;
+        string screenShotPath = Path.Combine(Application.persistentDataPath, "screenshot.png");
+        //Application.CaptureScreenshot(ScreenshotName);
+        // ScreenCapture.CaptureScreenshot(ScreenshotName);
 
 
         yield return new WaitForSeconds(1f);
         if (!Application.isEditor)
         {
-
-
             AndroidJavaClass intentClass = new AndroidJavaClass("android.content.Intent");
             AndroidJavaObject intentObject = new AndroidJavaObject("android.content.Intent");
 
             intentObject.Call<AndroidJavaObject>("setAction", intentClass.GetStatic<string>("ACTION_SEND"));
             AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
             AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", "file://" + screenShotPath);
-           // AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", "file://"+ PickImage(1024));
+            // AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", "file://"+ PickImage(1024));
             intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_STREAM"), uriObject);
             intentObject.Call<AndroidJavaObject>("setType", "image/png");
 
@@ -92,10 +81,11 @@ public class ScreenShotShare : MonoBehaviour
             AndroidJavaClass unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject currentActivity = unity.GetStatic<AndroidJavaObject>("currentActivity");
 
-            AndroidJavaObject jChooser = intentClass.CallStatic<AndroidJavaObject>("createChooser", intentObject, "Share Picture");
+            AndroidJavaObject jChooser =
+                intentClass.CallStatic<AndroidJavaObject>("createChooser", intentObject, "Share Picture");
             currentActivity.Call("startActivity", jChooser);
-
         }
+
         isProcessing = false;
     }
 #endif
